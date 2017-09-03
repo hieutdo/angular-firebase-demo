@@ -9,10 +9,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { firebaseConfig } from '../environments/firebase.config';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import { LessonsService } from './shared/model/lessons.service';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, LessonsListComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),

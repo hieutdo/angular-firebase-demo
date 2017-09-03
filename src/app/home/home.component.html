@@ -5,15 +5,5 @@
 <input type="text" class="search-bar" placeholder="Search">
 
 <div class="lessons-list-container v-h-center-block-parent">
-  <table class="table lessons-list card card-strong">
-    <tbody>
-      <tr *ngFor="let lesson of lessons">
-        <td class="lession-title">{{lesson.description}}</td>
-        <td class="duration">
-          <i class="md-icon duration-icon">access_time</i>
-          <span>{{lesson.duration}}</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <app-lessons-list [lessons]="lessons"></app-lessons-list>
 </div>
