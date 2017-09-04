@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Lesson } from '../shared/model/lesson';
 import { LessonsService } from '../shared/model/lessons.service';
@@ -15,13 +14,29 @@ export class LessonDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private lessonService: LessonsService
   ) {}
 
   ngOnInit() {
-    const lessonUrl = this.route.snapshot.params['id'];
-    this.lessonService
-      .findLessonByUrl(lessonUrl)
+    this.route.params
+      .switchMap(params => this.lessonService.findLessonByUrl(params['id']))
       .subscribe(lesson => (this.lesson = lesson));
+  }
+
+  previous() {
+    this.lessonService
+      .loadPreviousLesson(this.lesson.courseId, this.lesson.$key)
+      .subscribe(this.navigateToLesson.bind(this));
+  }
+
+  next() {
+    this.lessonService
+      .loadNextLesson(this.lesson.courseId, this.lesson.$key)
+      .subscribe(this.navigateToLesson.bind(this));
+  }
+
+  navigateToLesson(lesson: Lesson) {
+    this.router.navigate(['lessons', lesson.url]);
   }
 }

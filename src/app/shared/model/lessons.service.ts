@@ -19,4 +19,32 @@ export class LessonsService {
       })
       .map(lessons => Lesson.fromJson(lessons[0]));
   }
+
+  loadPreviousLesson(courseId: string, lessonId: string): Observable<Lesson> {
+    return this.db
+      .list(`lessonsPerCourse/${courseId}`, {
+        query: {
+          orderByKey: true,
+          endAt: lessonId,
+          limitToLast: 2,
+        },
+      })
+      .map(lessons => lessons[0].$key)
+      .switchMap(lessonKey => this.db.object(`lessons/${lessonKey}`))
+      .map(Lesson.fromJson);
+  }
+
+  loadNextLesson(courseId: string, lessonId: string): Observable<Lesson> {
+    return this.db
+      .list(`lessonsPerCourse/${courseId}`, {
+        query: {
+          orderByKey: true,
+          startAt: lessonId,
+          limitToFirst: 2,
+        },
+      })
+      .map(lessons => lessons[1].$key)
+      .switchMap(lessonKey => this.db.object(`lessons/${lessonKey}`))
+      .map(Lesson.fromJson);
+  }
 }
