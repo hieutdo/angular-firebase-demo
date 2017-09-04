@@ -13,9 +13,10 @@ import { HomeComponent } from './home/home.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import { routerConfig } from './router.config';
 import { LessonsService } from './shared/model/lessons.service';
+import { TopMenuComponent } from './top-menu/top-menu.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LessonsListComponent],
+  declarations: [AppComponent, HomeComponent, LessonsListComponent, TopMenuComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routerConfig),
