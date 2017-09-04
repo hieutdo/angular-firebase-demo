@@ -12,12 +12,13 @@ import { AppComponent } from './app.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
+import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import { routerConfig } from './router.config';
 import { CoursesService } from './shared/model/courses.service';
 import { LessonsService } from './shared/model/lessons.service';
+import { SafeUrlPipe } from './shared/security/safe-url.pipe';
 import { TopMenuComponent } from './top-menu/top-menu.component';
-import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
     CoursesComponent,
     CourseDetailComponent,
     LessonDetailComponent,
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,

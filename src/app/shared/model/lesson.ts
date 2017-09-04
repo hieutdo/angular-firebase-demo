@@ -7,6 +7,7 @@ export class Lesson {
     public tags: string,
     public pro: boolean,
     public longDescription: string,
+    public videoUrl: string,
     public courseId: string
   ) {}
 
@@ -27,6 +28,7 @@ export class Lesson {
       json.tags,
       json.pro,
       json.longDescription,
+      json.videoUrl,
       json.courseId
     );
   }
