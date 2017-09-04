@@ -6,6 +6,8 @@
     <td class="description">
       {{course.description}}
     </td>
-    <td><button>View</button></td>
+    <td>
+      <button [routerLink]="course.url">View</button>
+    </td>
   </tr>
 </table>

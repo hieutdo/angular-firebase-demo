@@ -9,6 +9,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { firebaseConfig } from '../environments/firebase.config';
 import { AppComponent } from './app.component';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
@@ -23,7 +24,8 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
     HomeComponent,
     LessonsListComponent,
     TopMenuComponent,
-    CoursesComponent
+    CoursesComponent,
+    CourseDetailComponent
   ],
   imports: [
     BrowserModule,
