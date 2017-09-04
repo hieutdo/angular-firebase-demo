@@ -9,4 +9,25 @@ export class Lesson {
     public longDescription: string,
     public courseId: string
   ) {}
+
+  get isBeginner() {
+    return this.tags && this.tags.includes('BEGINNER');
+  }
+
+  static fromJsonList(list): Lesson[] {
+    return list.map(Lesson.fromJson);
+  }
+
+  static fromJson(json): Lesson {
+    return new Lesson(
+      json.$key,
+      json.description,
+      json.duration,
+      json.url,
+      json.tags,
+      json.pro,
+      json.longDescription,
+      json.courseId
+    );
+  }
 }

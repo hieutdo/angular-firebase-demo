@@ -9,6 +9,6 @@ export class LessonsService {
   constructor(private db: AngularFireDatabase) {}
 
   findAllLessons(): Observable<Lesson[]> {
-    return this.db.list('lessons');
+    return this.db.list('lessons').map(Lesson.fromJsonList);
   }
 }
