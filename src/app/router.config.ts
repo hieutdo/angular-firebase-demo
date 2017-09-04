@@ -3,32 +3,37 @@ import { Route } from '@angular/router';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
+import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
 
 export const routerConfig: Route[] = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'courses',
     children: [
       {
         path: ':id',
-        component: CourseDetailComponent
+        component: CourseDetailComponent,
       },
       {
         path: '',
-        component: CoursesComponent
-      }
-    ]
+        component: CoursesComponent,
+      },
+    ],
+  },
+  {
+    path: 'lessons/:id',
+    component: LessonDetailComponent,
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home'
+    redirectTo: 'home',
   },
   {
     path: '**',
-    redirectTo: 'home'
-  }
+    redirectTo: 'home',
+  },
 ];

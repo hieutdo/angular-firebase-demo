@@ -11,4 +11,12 @@ export class LessonsService {
   findAllLessons(): Observable<Lesson[]> {
     return this.db.list('lessons').map(Lesson.fromJsonArray);
   }
+
+  findLessonByUrl(url: string): Observable<Lesson> {
+    return this.db
+      .list('lessons', {
+        query: { orderByChild: 'url', equalTo: url },
+      })
+      .map(lessons => Lesson.fromJson(lessons[0]));
+  }
 }

@@ -17,6 +17,7 @@ import { routerConfig } from './router.config';
 import { CoursesService } from './shared/model/courses.service';
 import { LessonsService } from './shared/model/lessons.service';
 import { TopMenuComponent } from './top-menu/top-menu.component';
+import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,15 +26,16 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
     LessonsListComponent,
     TopMenuComponent,
     CoursesComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    LessonDetailComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routerConfig),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
   providers: [LessonsService, CoursesService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
 import { Course } from '../shared/model/course';
@@ -9,7 +9,7 @@ import { Lesson } from '../shared/model/lesson';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
-  styleUrls: ['./course-detail.component.css']
+  styleUrls: ['./course-detail.component.css'],
 })
 export class CourseDetailComponent implements OnInit {
   pageSize = 3;
@@ -20,6 +20,7 @@ export class CourseDetailComponent implements OnInit {
   course$: Observable<Course>;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private coursesService: CoursesService
   ) {}
@@ -44,5 +45,9 @@ export class CourseDetailComponent implements OnInit {
     this.coursesService
       .loadNextLessonsPage(this.courseUrl, lessonKey, this.pageSize)
       .subscribe(lessons => (this.lessons = lessons));
+  }
+
+  navigateToLesson(lesson: Lesson) {
+    this.router.navigate(['lessons', lesson.url]);
   }
 }

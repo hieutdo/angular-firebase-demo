@@ -4,7 +4,8 @@
     <button (click)="previous()">Previous Page</button>
     <button (click)="next()">Next Page</button>
   </div>
-  <app-lessons-list [lessons]="lessons"></app-lessons-list>
+  <app-lessons-list [lessons]="lessons"
+                    (onClick)="navigateToLesson($event)"></app-lessons-list>
   <div class="tools-bar">
     <button>New Lesson</button>
   </div>

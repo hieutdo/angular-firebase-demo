@@ -18,7 +18,7 @@ export class CoursesService {
   findCourseByUrl(courseUrl: string): Observable<Course> {
     return this.db
       .list('courses', { query: { orderByChild: 'url', equalTo: courseUrl } })
-      .map(courses => courses[0]);
+      .map(courses => Course.fromJson(courses[0]));
   }
 
   findLessonKeysPerCourseUrl(
@@ -55,8 +55,8 @@ export class CoursesService {
     return this.findLessonsForLessonKeys(
       this.findLessonKeysPerCourseUrl(courseUrl, {
         query: {
-          limitToFirst: pageSize
-        }
+          limitToFirst: pageSize,
+        },
       })
     );
   }
@@ -71,8 +71,8 @@ export class CoursesService {
         query: {
           endAt: lessonKey,
           limitToLast: pageSize + 1,
-          orderByKey: true
-        }
+          orderByKey: true,
+        },
       })
     ).map(lessons => lessons.slice(0, lessons.length - 1));
   }
@@ -87,8 +87,8 @@ export class CoursesService {
         query: {
           startAt: lessonKey,
           limitToFirst: pageSize + 1,
-          orderByKey: true
-        }
+          orderByKey: true,
+        },
       })
     ).map(lessons => lessons.slice(1));
   }
