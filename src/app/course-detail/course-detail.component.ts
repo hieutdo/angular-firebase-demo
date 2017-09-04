@@ -12,6 +12,8 @@ import { Lesson } from '../shared/model/lesson';
   styleUrls: ['./course-detail.component.css']
 })
 export class CourseDetailComponent implements OnInit {
+  pageSize = 3;
+
   courseUrl: string;
   lessons: Lesson[];
 
@@ -26,23 +28,21 @@ export class CourseDetailComponent implements OnInit {
     this.courseUrl = this.route.snapshot.params['id'];
     this.course$ = this.coursesService.findCourseByUrl(this.courseUrl);
     this.coursesService
-      .loadFirstLessonsPage(this.courseUrl, 3)
+      .loadFirstLessonsPage(this.courseUrl, this.pageSize)
       .subscribe(lessons => (this.lessons = lessons));
   }
 
   previous() {
+    const lessonKey = this.lessons[0].$key;
     this.coursesService
-      .loadPreviousLessonsPage(this.courseUrl, this.lessons[0].$key, 3)
+      .loadPreviousLessonsPage(this.courseUrl, lessonKey, this.pageSize)
       .subscribe(lessons => (this.lessons = lessons));
   }
 
   next() {
+    const lessonKey = this.lessons[this.lessons.length - 1].$key;
     this.coursesService
-      .loadNextLessonsPage(
-        this.courseUrl,
-        this.lessons[this.lessons.length - 1].$key,
-        3
-      )
+      .loadNextLessonsPage(this.courseUrl, lessonKey, this.pageSize)
       .subscribe(lessons => (this.lessons = lessons));
   }
 }
