@@ -60,4 +60,36 @@ export class CoursesService {
       })
     );
   }
+
+  loadPreviousLessonsPage(
+    courseUrl: string,
+    lessonKey: string,
+    pageSize: number
+  ): Observable<Lesson[]> {
+    return this.findLessonsForLessonKeys(
+      this.findLessonKeysPerCourseUrl(courseUrl, {
+        query: {
+          endAt: lessonKey,
+          limitToLast: pageSize + 1,
+          orderByKey: true
+        }
+      })
+    ).map(lessons => lessons.slice(0, lessons.length - 1));
+  }
+
+  loadNextLessonsPage(
+    courseUrl: string,
+    lessonKey: string,
+    pageSize: number
+  ): Observable<Lesson[]> {
+    return this.findLessonsForLessonKeys(
+      this.findLessonKeysPerCourseUrl(courseUrl, {
+        query: {
+          startAt: lessonKey,
+          limitToFirst: pageSize + 1,
+          orderByKey: true
+        }
+      })
+    ).map(lessons => lessons.slice(1));
+  }
 }
