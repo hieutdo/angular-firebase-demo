@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Rx';
 
-import { Lesson } from './lesson';
+import { Course } from './course';
 
 @Injectable()
-export class LessonsService {
+export class CoursesService {
   constructor(private db: AngularFireDatabase) {}
 
-  findAllLessons(): Observable<Lesson[]> {
-    return this.db.list('lessons').map(Lesson.fromJsonArray);
+  findAllCourses(): Observable<Course[]> {
+    return this.db.list('courses').map(Course.fromJsonArray);
   }
 }

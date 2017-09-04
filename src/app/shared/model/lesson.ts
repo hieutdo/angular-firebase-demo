@@ -14,8 +14,8 @@ export class Lesson {
     return this.tags && this.tags.includes('BEGINNER');
   }
 
-  static fromJsonList(list): Lesson[] {
-    return list.map(Lesson.fromJson);
+  static fromJsonArray(array: any[]): Lesson[] {
+    return array.map(Lesson.fromJson);
   }
 
   static fromJson(json): Lesson {

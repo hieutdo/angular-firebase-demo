@@ -9,21 +9,29 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { firebaseConfig } from '../environments/firebase.config';
 import { AppComponent } from './app.component';
+import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import { routerConfig } from './router.config';
+import { CoursesService } from './shared/model/courses.service';
 import { LessonsService } from './shared/model/lessons.service';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LessonsListComponent, TopMenuComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LessonsListComponent,
+    TopMenuComponent,
+    CoursesComponent
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routerConfig),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [LessonsService],
+  providers: [LessonsService, CoursesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
