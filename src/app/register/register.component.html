@@ -1,0 +1,34 @@
+<form [formGroup]="form"
+      autocomplete="off"
+      novalidate
+      class="login-form">
+  <fieldset>
+    <legend>Register</legend>
+    <div class="form-field">
+      <label for="">Email:</label>
+      <input type="email"
+             name="email"
+             formControlName="email">
+      <div class="field-error-message"
+           *ngIf="isErrorVisible('email', 'required')">field is mandatory</div>
+    </div>
+    <div class="form-field">
+      <label for="">Password:</label>
+      <input type="password"
+             name="password"
+             formControlName="password">
+      <div class="field-error-message"
+           *ngIf="isErrorVisible('password', 'required')">field is mandatory</div>
+    </div>
+    <div class="form-field">
+      <label for="">Confirm Password:</label>
+      <input type="password"
+             name="confirm"
+             formControlName="confirm">
+      <div class="field-error-message"
+           *ngIf="isErrorVisible('confirm', 'required')">field is mandatory</div>
+    </div>
+  </fieldset>
+  <button (click)="signUp()"
+          [disabled]="!isPasswordMatch() || !form.valid">Create User</button>
+</form>

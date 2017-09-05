@@ -20,6 +20,7 @@ import { LessonFormComponent } from './lesson-form/lesson-form.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import { LoginComponent } from './login/login.component';
 import { NewLessonComponent } from './new-lesson/new-lesson.component';
+import { RegisterComponent } from './register/register.component';
 import { routerConfig } from './router.config';
 import { CoursesService } from './shared/model/courses.service';
 import { LessonResolver } from './shared/model/lesson.resolver';
@@ -42,6 +43,7 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
     LessonFormComponent,
     EditLessonComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
