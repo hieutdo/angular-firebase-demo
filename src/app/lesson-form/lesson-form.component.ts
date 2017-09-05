@@ -24,7 +24,9 @@ export class LessonFormComponent implements OnInit {
       tags: ['', Validators.required],
       longDescription: ['', Validators.required],
     });
-    this.form.patchValue(this.initialValue);
+    if (this.initialValue) {
+      this.form.patchValue(this.initialValue);
+    }
   }
 
   isErrorVisible(field: string, error: string) {
