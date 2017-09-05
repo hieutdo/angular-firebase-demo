@@ -25,6 +25,7 @@ import { routerConfig } from './router.config';
 import { CoursesService } from './shared/model/courses.service';
 import { LessonResolver } from './shared/model/lesson.resolver';
 import { LessonsService } from './shared/model/lessons.service';
+import { AuthGuard } from './shared/security/auth.guard';
 import { AuthService } from './shared/security/auth.service';
 import { SafeUrlPipe } from './shared/security/safe-url.pipe';
 import { TopMenuComponent } from './top-menu/top-menu.component';
@@ -53,7 +54,13 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
-  providers: [LessonsService, CoursesService, LessonResolver, AuthService],
+  providers: [
+    LessonsService,
+    CoursesService,
+    LessonResolver,
+    AuthService,
+    AuthGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

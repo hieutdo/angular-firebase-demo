@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { NewLessonComponent } from './new-lesson/new-lesson.component';
 import { RegisterComponent } from './register/register.component';
 import { LessonResolver } from './shared/model/lesson.resolver';
+import { AuthGuard } from './shared/security/auth.guard';
 
 export const routerConfig: Route[] = [
   {
@@ -41,15 +42,16 @@ export const routerConfig: Route[] = [
     path: 'lessons/:id',
     children: [
       {
-        path: '',
-        component: LessonDetailComponent,
-      },
-      {
         path: 'edit',
         component: EditLessonComponent,
         resolve: {
           lesson: LessonResolver,
         },
+      },
+      {
+        path: '',
+        component: LessonDetailComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },
