@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import { FirebaseApp } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { DatabaseReference } from 'angularfire2/database/interfaces';
 import { Observable, Subject } from 'rxjs/Rx';
 
 import { Lesson } from './lesson';
+import { firebaseConfig } from '../../../environments/firebase.config';
 
 @Injectable()
 export class LessonsService {
   sdkDb: DatabaseReference;
 
   constructor(
+    private http: Http,
     private db: AngularFireDatabase,
     private firebaseApp: FirebaseApp
   ) {
@@ -72,6 +75,12 @@ export class LessonsService {
     return this.firebaseUpdate({
       [`lessons/${lessonId}`]: lessonToSave,
     });
+  }
+
+  deleteLesson(lessonKey: string): Observable<any> {
+    return this.http.delete(
+      firebaseConfig.databaseURL + '/lessons/' + lessonKey + '.json'
+    );
   }
 
   firebaseUpdate(dataToSave) {
