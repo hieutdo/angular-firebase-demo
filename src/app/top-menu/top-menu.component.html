@@ -13,14 +13,14 @@
       <a routerLink="courses"
          routerLinkActive="menu-active">Courses</a>
     </li>
-    <li>
-      <a>Login</a>
+    <li *ngIf="!(authService.user | async)">
+      <a routerLink="login">Login</a>
     </li>
-    <li>
-      <a>Register</a>
+    <li *ngIf="!(authService.user | async)">
+      <a routerLink="register">Register</a>
     </li>
-    <li>
-      <a>Logout</a>
+    <li *ngIf="(authService.user | async)">
+      <a (click)="logout()">Logout</a>
     </li>
   </ul>
 </header>

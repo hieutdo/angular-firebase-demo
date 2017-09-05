@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { firebaseConfig } from '../environments/firebase.config';
@@ -17,11 +18,13 @@ import { HomeComponent } from './home/home.component';
 import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
 import { LessonFormComponent } from './lesson-form/lesson-form.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
+import { LoginComponent } from './login/login.component';
 import { NewLessonComponent } from './new-lesson/new-lesson.component';
 import { routerConfig } from './router.config';
 import { CoursesService } from './shared/model/courses.service';
 import { LessonResolver } from './shared/model/lesson.resolver';
 import { LessonsService } from './shared/model/lessons.service';
+import { AuthService } from './shared/security/auth.service';
 import { SafeUrlPipe } from './shared/security/safe-url.pipe';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 
@@ -38,6 +41,7 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
     NewLessonComponent,
     LessonFormComponent,
     EditLessonComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +49,9 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
     RouterModule.forRoot(routerConfig),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
   ],
-  providers: [LessonsService, CoursesService, LessonResolver],
+  providers: [LessonsService, CoursesService, LessonResolver, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

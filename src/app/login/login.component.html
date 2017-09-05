@@ -1,0 +1,23 @@
+<form [formGroup]="form"
+      class="login-form"
+      autocomplete="off"
+      novalidate>
+  <fieldset>
+    <legend>Login</legend>
+    <div class="form-field">
+      <label for="email">Email:</label>
+      <input type="text"
+             id="email"
+             name="email"
+             formControlName="email">
+    </div>
+    <div class="form-field">
+      <label for="password">Password</label>
+      <input type="password"
+             id="password"
+             name="password"
+             formControlName="password">
+    </div>
+  </fieldset>
+  <button (click)="login()">Login</button>
+</form>
