@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Lesson } from '../shared/model/lesson';
 import { validateUrl } from '../shared/validators/validateUrl';
 
 @Component({
@@ -10,6 +11,8 @@ import { validateUrl } from '../shared/validators/validateUrl';
 })
 export class LessonFormComponent implements OnInit {
   form: FormGroup;
+
+  @Input() initialValue: Lesson;
 
   constructor(private fb: FormBuilder) {}
 
@@ -21,6 +24,7 @@ export class LessonFormComponent implements OnInit {
       tags: ['', Validators.required],
       longDescription: ['', Validators.required],
     });
+    this.form.patchValue(this.initialValue);
   }
 
   isErrorVisible(field: string, error: string) {
